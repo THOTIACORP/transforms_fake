@@ -1,0 +1,179 @@
+[
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "QApplication",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QSpinBox",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QHBoxLayout",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QTextEdit",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "importPath": "transforms_fake.main",
+        "description": "transforms_fake.main",
+        "isExtraImport": true,
+        "detail": "transforms_fake.main",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "find_packages",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "MainWindow",
+        "kind": 6,
+        "importPath": "transforms_fake.main",
+        "description": "transforms_fake.main",
+        "peekOfCode": "class MainWindow(QWidget):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"Gerador de Ratos com Fundo Aleatório\")\n        self.setGeometry(100, 100, 600, 400)\n        layout = QVBoxLayout()\n        hbox1 = QHBoxLayout()\n        hbox1.addWidget(QLabel(\"Número de fundos a usar:\"))\n        self.spin_fundos = QSpinBox()\n        self.spin_fundos.setMinimum(1)",
+        "detail": "transforms_fake.main",
+        "documentation": {}
+    },
+    {
+        "label": "rotate_image_and_mask",
+        "kind": 2,
+        "importPath": "transforms_fake.main",
+        "description": "transforms_fake.main",
+        "peekOfCode": "def rotate_image_and_mask(image, mask, angle):\n    \"\"\"Rotaciona a imagem e a máscara mantendo o mesmo tamanho.\"\"\"\n    (h, w) = image.shape[:2]\n    center = (w // 2, h // 2)\n    M = cv2.getRotationMatrix2D(center, angle, 1.0)\n    rotated_img = cv2.warpAffine(image, M, (w, h), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=(0,0,0))\n    rotated_mask = cv2.warpAffine(mask, M, (w, h), flags=cv2.INTER_NEAREST, borderMode=cv2.BORDER_CONSTANT, borderValue=0)\n    return rotated_img, rotated_mask\ndef process_images(num_fundos, num_ratos_por_fundo, log_widget):\n    image_dir = 'rats'",
+        "detail": "transforms_fake.main",
+        "documentation": {}
+    },
+    {
+        "label": "process_images",
+        "kind": 2,
+        "importPath": "transforms_fake.main",
+        "description": "transforms_fake.main",
+        "peekOfCode": "def process_images(num_fundos, num_ratos_por_fundo, log_widget):\n    image_dir = 'rats'\n    mask_dir = 'masks'\n    output_background_dir = 'ratos/fundos_sem_rato'\n    output_ratos_dir = 'ratos/novos_ratos'\n    output_masks_dir = 'ratos/mascaras'  # pasta para máscaras\n    os.makedirs(output_background_dir, exist_ok=True)\n    os.makedirs(output_ratos_dir, exist_ok=True)\n    os.makedirs(output_masks_dir, exist_ok=True)\n    target_size = (1428, 1068)",
+        "detail": "transforms_fake.main",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "transforms_fake.main",
+        "description": "transforms_fake.main",
+        "peekOfCode": "def main():\n    app = QApplication(sys.argv)\n    window = MainWindow()\n    window.show()\n    sys.exit(app.exec_())\nif __name__ == '__main__':\n    main()",
+        "detail": "transforms_fake.main",
+        "documentation": {}
+    }
+]

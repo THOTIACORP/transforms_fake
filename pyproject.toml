@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "your-library"
+name = "transforms_fake"
 version = "0.1.0"
 description = "Cross-platform graphical installer with Docker support."
 authors = [{ name = "Seu Nome", email = "seu@email.com" }]
@@ -28,4 +28,4 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/seuusuario/your-library"
+Homepage = "https://github.com/THOTIACORP/transforms_fake.git"
