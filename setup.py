@@ -5,13 +5,13 @@ setup(
     version='0.1.0',
     packages=find_packages(),  # Isso busca a pasta transforms_fake com __init__.py
     install_requires=[
-        'fastapi', 'json5', 'matplotlib', 'numpy', 'opencv-contrib-python',
-        'opencv-python', 'pillow', 'plotly', 'PyQt5', 'PyQt5-tools',
-        'scikit-learn', 'torchvision', 'tqdm', 'uvicorn'
+         "opencv-python>=4.5.0",
+        "numpy>=1.19.0",
+        "PyQt5>=5.15.0"
     ],
     entry_points={
         'console_scripts': [
-            'transforms-fake=transforms_fake.__main__:main'
+            'transforms-fake=src.__main__:main'
         ],
     },
 )
