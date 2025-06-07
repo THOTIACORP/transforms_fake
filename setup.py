@@ -1,36 +1,21 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='rato-generator',
-    version='0.1.0',
-    description='Gerador de ratos com fundo aleatório e máscaras',
-    author='Seu Nome',
-    author_email='seu@email.com',
+    name="transforms-fake",
+    version="1.0.0",
+    author="Seu Nome",
+    author_email="seu.email@exemplo.com", 
+    description="Uma biblioteca para gerar variações de imagens",
     packages=find_packages(),
+    python_requires=">=3.7",
     install_requires=[
-        'opencv-contrib-python',
-        'numpy',
-        'pillow',
-        'matplotlib',
-        'tqdm',
-        'json5',
-        'torchvision',
-        'opencv-python',
-        'scikit-learn',
-        'plotly',
-        'PyQt5',
-        'PyQt5-tools',
-        'fastapi',
-        'uvicorn'
+        "opencv-python>=4.5.0",
+        "numpy>=1.19.0",
+        "PyQt5>=5.15.0"
     ],
     entry_points={
-        'console_scripts': [
-            'rato-generator = rato_generator.gui:main'
-        ]
+        "console_scripts": [
+            "transforms-fake-gui=transforms_fake.gui:main",
+        ],
     },
-    classifiers=[
-        'Programming Language :: Python :: 3',
-        'Operating System :: OS Independent',
-    ],
-    python_requires='>=3.9.13',
 )
