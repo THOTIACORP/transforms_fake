@@ -35,11 +35,48 @@ pip install git+https://github.com/THOTIACORP/transforms_fake.git
 
 ## Quick start
 
+### GUI
+
 ```python
 from transforms_fake.main import main
 
 # Basic usage
 main()
+```
+
+### Code
+
+```bash
+from transforms_fake.main import process_images
+
+
+
+class FakeLogWidget:
+    def __init__(self):
+        self.logs = []
+
+    def append(self, text):
+        self.logs.append(text)
+
+    def repaint(self):
+        pass  # Não faz nada, só para evitar erro
+
+    def __str__(self):
+        return "\n".join(self.logs)
+
+# Uso:
+log_widget = FakeLogWidget()
+# Basic usage
+img_dir = './img'
+mask_dir = './mask'
+output_dir = './output'
+num_fundos = 50
+num_ratos_por_fundo = 100
+
+process_images(img_dir, mask_dir, output_dir, num_fundos, num_ratos_por_fundo, log_widget)
+
+print("Logs:")
+print(log_widget)
 ```
 
 ## Dataset structure

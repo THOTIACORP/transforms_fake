@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "transforms_fake"
 version = "0.1.3"
-description = "Cross-platform graphical installer with Docker support."
+description = "A Python library for generating realistic synthetic images to train segmentation models in a smart, simple way."
 authors = [{ name = "Peres; RB, Borges; CA", email = "founder@thotiacorp.com.br" }]
 readme = "README.md"
 requires-python = ">=3.9.13"
