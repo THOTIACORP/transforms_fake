@@ -2,7 +2,7 @@
 
 A Python library for generating realistic synthetic images to train segmentation models in a smart, simple way.
 
-[![PyPI version](https://img.shields.io/badge/version-0.1.0-blue)](https://pypi.org/project/transforms-fake/)
+[![PyPI version](https://img.shields.io/badge/version-0.1.3-blue)](https://pypi.org/project/transforms-fake/)
 [![License](https://img.shields.io/badge/license-GNU-green)](https://github.com/THOTIACORP/transforms_fake/blob/main/LICENSE)
 [![Status](https://img.shields.io/badge/status-development-yellow)](https://github.com/THOTIACORP/transforms_fake)
 
