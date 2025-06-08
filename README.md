@@ -44,10 +44,11 @@ from transforms_fake.main import main
 main()
 ```
 
-![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F12221778%2Fce48a9216da33d0a25a847f54e8079d0%2FCaptura%20de%20tela%202025-06-08%20004703.png?generation=1749358037671471&alt=media)
+<div align="center">
 
+<img style="width: 700px;" src="https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F12221778%2Fce48a9216da33d0a25a847f54e8079d0%2FCaptura%20de%20tela%202025-06-08%20004703.png?generation=1749358037671471&alt=media"></img>
 
-
+</div>
 
 ### Code
 
