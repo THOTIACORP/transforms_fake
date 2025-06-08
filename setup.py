@@ -11,7 +11,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'transforms-fake=src.__main__:main'
+            'transforms-fake=transforms_fake.__main__:main'
         ],
     },
 )

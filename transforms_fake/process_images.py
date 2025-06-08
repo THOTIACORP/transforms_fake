@@ -1,14 +1,11 @@
-import sys
 import os
 import random
 import cv2
 import numpy as np
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QLabel, QPushButton, QSpinBox,
-    QVBoxLayout, QHBoxLayout, QTextEdit
+    QApplication
 )
-from PyQt5.QtCore import Qt
-
+from transforms_fake import rotate_image_and_mask
 def rotate_image_and_mask(image, mask, angle):
     """Rotaciona a imagem e a máscara mantendo o mesmo tamanho."""
     (h, w) = image.shape[:2]
@@ -19,8 +16,8 @@ def rotate_image_and_mask(image, mask, angle):
     return rotated_img, rotated_mask
 
 def process_images(num_fundos, num_ratos_por_fundo, log_widget):
-    image_dir = 'rats'
-    mask_dir = 'masks'
+    image_dir = 'example/rats/image'
+    mask_dir = 'example/rats/masks'
     output_background_dir = 'ratos/fundos_sem_rato'
     output_ratos_dir = 'ratos/novos_ratos'
     output_masks_dir = 'ratos/mascaras'  # pasta para máscaras
@@ -157,54 +154,3 @@ def process_images(num_fundos, num_ratos_por_fundo, log_widget):
             cv2.imwrite(output_mask_path, mask_variacao)
 
         log(f'✅ Processado {img_file} - {num_ratos_por_fundo} variações de rato criadas com máscaras e rotação.')
-
-class MainWindow(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Gerador de Ratos com Fundo Aleatório")
-        self.setGeometry(100, 100, 600, 400)
-
-        layout = QVBoxLayout()
-
-        hbox1 = QHBoxLayout()
-        hbox1.addWidget(QLabel("Número de fundos a usar:"))
-        self.spin_fundos = QSpinBox()
-        self.spin_fundos.setMinimum(1)
-        self.spin_fundos.setMaximum(100)
-        self.spin_fundos.setValue(5)
-        hbox1.addWidget(self.spin_fundos)
-        layout.addLayout(hbox1)
-
-        hbox2 = QHBoxLayout()
-        hbox2.addWidget(QLabel("Número de ratos por fundo:"))
-        self.spin_ratos = QSpinBox()
-        self.spin_ratos.setMinimum(1)
-        self.spin_ratos.setMaximum(100)
-        self.spin_ratos.setValue(10)
-        hbox2.addWidget(self.spin_ratos)
-        layout.addLayout(hbox2)
-
-        self.log_widget = QTextEdit()
-        self.log_widget.setReadOnly(True)
-        layout.addWidget(self.log_widget)
-
-        btn_processar = QPushButton("Processar Imagens")
-        btn_processar.clicked.connect(self.start_processing)
-        layout.addWidget(btn_processar)
-
-        self.setLayout(layout)
-
-    def start_processing(self):
-        num_fundos = self.spin_fundos.value()
-        num_ratos = self.spin_ratos.value()
-        self.log_widget.clear()
-        process_images(num_fundos, num_ratos, self.log_widget)
-
-def main():
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec_())
-
-if __name__ == '__main__':
-    main()

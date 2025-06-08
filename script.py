@@ -1,4 +1,4 @@
-from src.main import main
+from transforms_fake.main import main
 
 print("Pacote importado com sucesso!")
 main()
