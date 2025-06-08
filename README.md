@@ -118,6 +118,19 @@ meu_dataset/
 
 ---
 
+🔬 Comparativo com a Sinapsis
+
+| 🔧 Recurso                              | Sinapsis Tools (Albumentations Wrappers) | transforms\_fake                |
+| --------------------------------------- | ---------------------------------------- | ------------------------------- |
+| Rotação, flip, elastic, warp            | ✅                                        | ✅                               |
+| Suporte a máscaras & keypoints          | ✅                                        | ✅                               |
+| Copy-paste por objeto (instância)       | ❌                                        | ✅                               |
+| Geração de imagens sintéticas realistas | ❌                                        | ✅                               |
+| Interface gráfica / demo (web ou GUI)   | ✅ (Gradio/webapp)                        | ✅ (GUI Qt - em desenvolvimento) |
+
+
+---
+
 ## 👵 Para a Tia Maria entender
 
 Imagina que você tem uma foto de uma banana. Agora, você quer treinar um computador pra reconhecer bananas, mas só tem 3 fotos. Com essa biblioteca, você pode:
