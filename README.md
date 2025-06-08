@@ -1,178 +1,121 @@
-# 📦 transforms\_fake
+# transforms_fake
 
-> Gera imagens sintéticas realistas para treinar modelos de segmentação de forma inteligente, simples e divertida.
+A Python library for generating realistic synthetic images to train segmentation models in a smart, simple way.
 
-![badge](https://img.shields.io/badge/version-0.1.0-blue) ![license](https://img.shields.io/badge/license-MIT-green) ![status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+[![PyPI version](https://img.shields.io/badge/version-0.1.0-blue)](https://pypi.org/project/transforms-fake/)
+[![License](https://img.shields.io/badge/license-GNU-green)](https://github.com/THOTIACORP/transforms_fake/blob/main/LICENSE)
+[![Status](https://img.shields.io/badge/status-development-yellow)](https://github.com/THOTIACORP/transforms_fake)
 
----
+## Overview
 
-## ✨ O que é?
+`transforms_fake` automatically generates new labeled images and masks from existing annotated datasets. Unlike traditional augmentation libraries, which only transform existing data, this library creates entirely new training examples by intelligently extracting and repositioning objects with their corresponding masks.
 
-`transforms_fake` é uma biblioteca Python que cria **novas imagens e máscaras** automaticamente a partir de outras já rotuladas (com máscaras). Ideal para **segmentação de imagens**, especialmente quando você não tem muitos dados rotulados.
+**Key innovation**: context-aware object insertion that maintains a realistic appearance while expanding the diversity of the dataset.
 
-Ao contrário de bibliotecas como `Albumentations`, que apenas transformam o que já existe (flip, blur, crop etc), esta aqui cria **novos exemplos** inserindo objetos reais com contexto em outras imagens de forma automática.
+## Features
 
-Imagine pegar um tomate de uma imagem, girar um pouco e colar ele em outro canto da mesma ou de outra imagem. Isso, com máscaras e sem sofrimento. É isso que a `transforms_fake` faz. 🍅📸✨
+- **Instance-aware copy and paste**: extract objects using segmentation masks
+- **Contextual transformations**: rotation, scaling, and inversion with mask preservation
+- **Insertion between images**: place objects from one image into different backgrounds
+- **Automatic mask updates**: maintains segmentation labels with pixel-perfect accuracy
+- **Framework integration**: compatible with PyTorch and FastAI workflows
+- **Dataset export**: generate ready-to-use training datasets
 
----
-
-## 🎯 Motivacão
-
-Quantas vezes você já quis treinar um modelo, mas não tinha dados suficientes? E se fosse possível multiplicar seus dados sem perder realismo?
-
-`transforms_fake` nasce dessa necessidade: **aumentar conjuntos de dados de forma contextual e realista, focando em segmentação**.
-
----
-
-## 📌 Exemplos Visuais
-
-### Original:
-
-![original](https://via.placeholder.com/300x200?text=Imagem+Original)
-
-### Após `transforms_fake`:
-
-![gerado](https://via.placeholder.com/300x200?text=Imagem+Gerada)
-
-> Veja como objetos foram reposicionados de forma realista, mantendo a coerência com máscaras!
-
----
-
-## 🧠 Como funciona?
-
-1. **Lê imagens e máscaras** (por exemplo, PNG com canal alpha ou imagens separadas)
-2. Detecta instâncias rotuladas
-3. Faz "recorte" do objeto com base na máscara
-4. Reinsere em outra região da imagem (com opções de rotação, flip, escala etc)
-5. Atualiza a máscara automaticamente
-
----
-
-## ✅ Recursos
-
-| Recurso                                 | Suporte |
-| --------------------------------------- | ------- |
-| Copy-paste com máscaras                 | ✅       |
-| Rotação, flip, escala contextual        | ✅       |
-| Inserção em outra imagem                | ✅       |
-| Suporte a PyTorch e FastAI              | ✅       |
-| Atualização de máscaras automática      | ✅       |
-| Exporta como dataset (imagens + labels) | ✅       |
-
----
-
-## 🚀 Instalação
+## Installation
 
 ```bash
 pip install transforms_fake
 ```
 
-Ou diretamente do GitHub (versão mais recente):
+For the latest development version:
 
 ```bash
 pip install git+https://github.com/THOTIACORP/transforms_fake.git
 ```
 
----
-
-## 🧪 Exemplo de uso
+## Quick start
 
 ```python
-from transforms_fake import main
+from transforms_fake.main import main
 
-main(
-    input_dir="./meu_dataset",
-    output_dir="./dataset_aumentado",
-    num_augmented=50,
-    rotate=True,
-    flip=True,
-    paste_in_different_images=True
-)
+# Basic usage
+main()
 ```
 
----
+## Dataset structure
 
-## 🧱 Estrutura sugerida
+Organize your data as follows:
 
 ```
-meu_dataset/
+dataset/
 ├── images/
-│   ├── img1.png
-│   └── img2.png
+│   ├── image1.png
+│   └── image2.png
 └── masks/
-    ├── img1_mask.png
-    └── img2_mask.png
+    ├── image1_mask.png
+    └── image2_mask.png
 ```
 
----
+## How it works
 
-## 🤖 Comparativo com Albumentations
+1. **Input processing**: Loads images with corresponding segmentation masks
+2. **Instance detection**: Identifies individual objects within the masks
+3. **Object extraction**: Isolates objects using the mask boundaries
+4. **Contextual placement**: Inserts objects into new locations with transformations
+5. **Mask synchronization**: Updates the segmentation masks to match the new object positions
 
-| Recurso                            | Albumentations | transforms\_fake |
-| ---------------------------------- | -------------- | ---------------- |
-| Transformar imagem original        | ✅              | ✅                |
-| Gera novas instâncias realistas    | ❌              | ✅                |
-| Manipula objetos individuais       | ❌              | ✅                |
-| Reutiliza máscaras para colagem    | ❌              | ✅                |
-| Modo interativo (com GUI opcional) | ❌              | ✅ (em breve)     |
+## Comparison with existing tools
 
----
+### vs. Albumentations
 
-🔬 Comparativo com a Sinapsis
+| Feature                              | Albumentations | transforms_fake |
+| ------------------------------------ | -------------- | --------------- |
+| Traditional augmentation             | ✅             | ✅              |
+| Synthetic instance generation        | ❌             | ✅              |
+| Individual object manipulation       | ❌             | ✅              |
+| Copy and paste with mask recognition | ❌             | ✅              |
 
-| 🔧 Recurso                              | Sinapsis Tools (Albumentations Wrappers) | transforms\_fake                |
-| --------------------------------------- | ---------------------------------------- | ------------------------------- |
-| Rotação, flip, elastic, warp            | ✅                                        | ✅                               |
-| Suporte a máscaras & keypoints          | ✅                                        | ✅                               |
-| Copy-paste por objeto (instância)       | ❌                                        | ✅                               |
-| Geração de imagens sintéticas realistas | ❌                                        | ✅                               |
-| Interface gráfica / demo (web ou GUI)   | ✅ (Gradio/webapp)                        | ✅ (GUI Qt - em desenvolvimento) |
+### vs. Other augmentation tools
 
+- **Traditional libraries** modify existing pixels
+- **transforms_fake** creates new object arrangements while preserving realism
+- Designed specifically for segmentation tasks that require diversity at the instance level
 
----
+## Use cases
 
-## 👵 Para a Tia Maria entender
+- **Medical images**: augment rare cases of pathologies
+- **Object detection**: augment variations in object occurrence
+- **Segmentation**: generate diverse object arrangements
+- **Small datasets**: multiply training examples contextually
 
-Imagina que você tem uma foto de uma banana. Agora, você quer treinar um computador pra reconhecer bananas, mas só tem 3 fotos. Com essa biblioteca, você pode:
+## Requirements
 
-* Copiar a banana da primeira imagem,
-* Girar um pouco,
-* Colar em outro canto,
-* E repetir!
+- Python 3.7+
+- PIL/Pillow for image processing
+- NumPy for matrix operations
+- Compatible with PyTorch and FastAI
 
-Agora o computador acha que você tem 50 fotos diferentes. 🍌🧠
+## Contributions
 
----
+Contributions are welcome! Please:
 
-## 📚 Documentação (em breve)
+1. Fork the repository
+2. Create feature branches
+3. Submit pull requests with clear descriptions
+4. Report bugs via issues on GitHub
 
-Enquanto isso, veja os exemplos em `examples/` ou explore os notebooks.
+## License
 
----
+GNU General Public License v3.0 - See [LICENSE](LICENSE) for details.
 
-## 🛠 Requisitos
+## Contact
 
-* Python 3.8+
-* OpenCV
-* NumPy
-* Pillow
-* matplotlib (opcional)
-* PyQt5 (futuro suporte a modo visual)
+**THOTIACORP**
 
----
+- GitHub: [@THOTIACORP](https://github.com/THOTIACORP)
+- Email: founder@thotiacorp.com.br
 
-## 👨‍💻 Contribuindo
+## Authors
 
-Pull requests são bem-vindos! Para bugs, abra uma issue. Para sugestões, nos mande um email ou crie uma discussão.
-
----
-
-## ✉️ Contato
-
-THOTIACORP - [GitHub](https://github.com/THOTIACORP) | email: [founder@thotiacorp.com.br](mailto:founder@thotiacorp.com.br)
-
----
-
-## 👉 Licença
-
-GNU GENERAL PUBLIC LICENSE - use, copie, melhore!
+- [Peres; RB](https://www.linkedin.com/in/ronnei-borges/)
+- [Borges; CA](https://www.linkedin.com/in/cesar-augusto-dev-br/)

@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "transforms_fake"
-version = "0.1.0"
+version = "0.1.2"
 description = "Cross-platform graphical installer with Docker support."
-authors = [{ name = "Seu Nome", email = "seu@email.com" }]
+authors = [{ name = "Peres; RB, Borges; CA", email = "founder@thotiacorp.com.br" }]
 readme = "README.md"
 requires-python = ">=3.9.13"
-license = { text = "MIT" }
+license = { file = "LICENSE" }
 dependencies = [
      "opencv-python>=4.5.0",
         "numpy>=1.19.0",
